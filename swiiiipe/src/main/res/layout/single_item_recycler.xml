@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.layout.swipe.swipelayout2.SwipeLayout android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:layout_marginTop="20dp"
+    android:id="@+id/removeLayout"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:id="@+id/name">
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="vertical"
+           android:gravity="center"
+           android:background="@drawable/indiagate">
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="Dipanjan Biswas"
+               android:textSize="18dp"
+               android:textStyle="bold"
+               android:id="@+id/nameText"/>
+       </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    </com.layout.swipe.swipelayout2.SwipeLayout>
+
+
+
