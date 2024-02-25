@@ -54,10 +54,6 @@ public class SwipeRecyclerView extends RecyclerView {
 
         itemTouchHelper1.attachToRecyclerView(this);
 
-
-
-
-
     }
 
     public class MyItemTouchHelper extends ItemTouchHelper.Callback {
@@ -83,14 +79,8 @@ public class SwipeRecyclerView extends RecyclerView {
         @Override
         public void onSwiped(@NonNull ViewHolder viewHolder, int direction) {
 
-
-            ((MainActivity.SampleRecyclerAdapter.ViewHolder) viewHolder).isSwiped = true;
-            ((MainActivity.SampleRecyclerAdapter)SwipeRecyclerView.this.getAdapter()).notifyItemChanged(viewHolder.getAdapterPosition());
-
-
-
-
-
+            ((SwipeViewHolder)viewHolder).setSwiped(true);
+            (SwipeRecyclerView.this.getAdapter()).notifyItemChanged(viewHolder.getAdapterPosition());
 
         }
 
