@@ -33,7 +33,7 @@ public class SwipeLayout extends RelativeLayout {
     int SCREEN_WIDTH;
 
     ViewGroup swipeRoot;
-    TextView textView;
+    public TextView textView;
 
     boolean isTouch;
 
