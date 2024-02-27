@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
 
             holder.nameText.setText(c);
 
-            if (holder.isSwiped) {
+            if (holder.isSwiped()) {
 
 
                 holder.name.setVisibility(View.INVISIBLE);
@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
                 holder.removeLayout.setVisibility(View.VISIBLE);
                 holder.removeLayout.textView.setVisibility(View.INVISIBLE);
                 holder.name.setVisibility(View.VISIBLE);
-                holder.name.setElevation(20);
+
 
             }
 
@@ -154,13 +154,11 @@ public class MainActivity extends AppCompatActivity {
             return position;
         }
 
-        public class ViewHolder extends RecyclerView.ViewHolder {
+        public class ViewHolder extends SwipeViewHolder {
 
 
             SwipeLayout  removeLayout;
             CardView name;
-
-            public boolean isSwiped;
 
             TextView nameText;
 

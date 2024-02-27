@@ -1,32 +1,21 @@
 package com.layout.swipe.swipelayout2;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Rect;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.view.Gravity;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
-
 public class SwipeRecyclerView extends RecyclerView {
 
     Context context;
 
-    ArrayList<BitmapRec> br = new ArrayList<>();
+    private static int SCREEN_WIDTH = 0;
+
+    //ArrayList<BitmapRec> br = new ArrayList<>();
 
     MyItemTouchHelper itemTouchHelper;
     public SwipeRecyclerView(@NonNull Context context) {
@@ -49,18 +38,69 @@ public class SwipeRecyclerView extends RecyclerView {
 
     public void setListeners() {
 
-         MyItemTouchHelper myItemTouchHelper = new MyItemTouchHelper();
+        SCREEN_WIDTH = Utils.getScreenWidth(this.context) - 30;
+
+
+        MyItemTouchHelper myItemTouchHelper = new MyItemTouchHelper();
         ItemTouchHelper itemTouchHelper1 = new ItemTouchHelper(myItemTouchHelper);
 
         itemTouchHelper1.attachToRecyclerView(this);
 
     }
 
+    @Nullable
+    @Override
+    public Adapter getAdapter() {
+        return super.getAdapter();
+    }
+
     public class MyItemTouchHelper extends ItemTouchHelper.Callback {
+
+        Canvas c;
+        RecyclerView rv;
 
         @Override
         public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView, @NonNull ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
-            super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+
+            this.rv = recyclerView;
+            this.c = c;
+
+
+
+            if (((SwipeViewHolder) viewHolder).isSwiped() && actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
+
+                return;
+            }
+
+                if (dX >= SCREEN_WIDTH) {
+
+                    //(SwipeRecyclerView.this.getAdapter()).notifyItemRemoved(viewHolder.getAdapterPosition());
+
+                    super.onChildDraw(c , recyclerView , viewHolder , 0 , 0 , ItemTouchHelper.ACTION_STATE_SWIPE , false);
+
+//                    ((ParkAdapter.ViewHolder) viewHolder).linearroot.setVisibility(GONE);
+//                    ((ParkAdapter.ViewHolder) viewHolder).viewHolderRoot.textView.setVisibility(VISIBLE);
+                    ((SwipeViewHolder)viewHolder).setSwiped(true);
+
+
+                    (SwipeRecyclerView.this.getAdapter()).notifyItemChanged(((SwipeViewHolder)viewHolder).getAdapterPosition());
+
+
+
+
+                    return;
+
+
+
+
+            } else {
+
+                super.onChildDraw(c, rv, viewHolder, dX, 0, ItemTouchHelper.ACTION_STATE_SWIPE, true);
+
+            }
+
+
+
 
         }
 
@@ -78,9 +118,40 @@ public class SwipeRecyclerView extends RecyclerView {
 
         @Override
         public void onSwiped(@NonNull ViewHolder viewHolder, int direction) {
+//
+//            Log.d(SwipeRecyclerView.this.getClass().getName(), "onSwiped: " + viewHolder.getClass().getName());
+//
+//            if (((SwipeViewHolder) viewHolder).isSwiped()) {
+//
+//
+//                return;
+//            }
+//
+//
+//
+//            this.onChildDraw(c, rv, viewHolder, 0, 0, 0, false);
+//
+////            new Handler().postDelayed(new Runnable() {
+////                @Override
+////                public void run() {
+////
+////                    retainChild(viewHolder);
+////
+////                }
+////            } , 500);
 
-            ((SwipeViewHolder)viewHolder).setSwiped(true);
-            (SwipeRecyclerView.this.getAdapter()).notifyItemChanged(viewHolder.getAdapterPosition());
+
+
+
+
+
+
+
+
+
+
+
+
 
         }
 
