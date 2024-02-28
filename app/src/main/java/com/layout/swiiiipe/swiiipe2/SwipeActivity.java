@@ -1,4 +1,4 @@
-package com.layout.swipe.swipelayout2;
+package com.layout.swiiiipe.swiiipe2;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,33 +6,28 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
+import com.layout.swipe.swipelayout2.CharModel;
+import com.layout.swipe.swipelayout2.SwipeLayout;
+import com.layout.swipe.swipelayout2.SwipeRecyclerView;
+import com.layout.swipe.swipelayout2.SwipeViewHolder;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
-
+public class SwipeActivity extends AppCompatActivity {
     RelativeLayout swipeRoot;
 
     SwipeRecyclerView swipeRecycler;
     String[] countries = {"India" , "London" , "USA" , "Germany" , "Switzerland"};
 
-    int[] resIds = {R.drawable.indiagate , R.drawable.london , R.drawable.usa , R.drawable.germany , R.drawable.switzerland};
+    int[] resIds = {com.layout.swipe.swipelayout2.R.drawable.indiagate , com.layout.swipe.swipelayout2.R.drawable.indiagate , com.layout.swipe.swipelayout2.R.drawable.indiagate , com.layout.swipe.swipelayout2.R.drawable.indiagate , com.layout.swipe.swipelayout2.R.drawable.indiagate};
 
     ArrayList<CharModel> charModels = new ArrayList<>();
 
@@ -100,14 +95,14 @@ public class MainActivity extends AppCompatActivity {
 
                 holder.name.setVisibility(View.INVISIBLE);
                 holder.removeLayout.setVisibility(View.VISIBLE);
-                holder.removeLayout.textView.setVisibility(View.VISIBLE);
+                holder.removeLayout.text.setVisibility(View.VISIBLE);
                 //holder.removeLayout.setBackgroundColor(Color.CYAN);
 
             } else {
 
 
                 holder.removeLayout.setVisibility(View.VISIBLE);
-                holder.removeLayout.textView.setVisibility(View.INVISIBLE);
+                holder.removeLayout.text.setVisibility(View.INVISIBLE);
                 holder.name.setVisibility(View.VISIBLE);
 
 
@@ -115,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
             holder.itemView.setOnClickListener((v)->{
 
-                Toast.makeText(MainActivity.this, "Clicked", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SwipeActivity.this, "Clicked", Toast.LENGTH_SHORT).show();
                 holder.isSwiped = false;
                 notifyItemChanged(position);
 
@@ -157,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
         public class ViewHolder extends SwipeViewHolder {
 
 
-            SwipeLayout  removeLayout;
+            public SwipeLayout removeLayout;
             CardView name;
 
             TextView nameText;
@@ -180,7 +175,5 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
-
 
 }

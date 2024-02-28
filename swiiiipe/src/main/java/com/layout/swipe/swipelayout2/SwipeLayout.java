@@ -33,7 +33,7 @@ public class SwipeLayout extends RelativeLayout {
     int SCREEN_WIDTH;
 
     ViewGroup swipeRoot;
-    public TextView textView;
+    public TextView text;
 
     boolean isTouch;
 
@@ -46,6 +46,7 @@ public class SwipeLayout extends RelativeLayout {
         super(context);
         this.context = context;
         SCREEN_WIDTH = Utils.getScreenWidth(context);
+        text = new TextView(context);
         setSwipeLayout();
 
     }
@@ -55,6 +56,7 @@ public class SwipeLayout extends RelativeLayout {
 
         this.context = context;
         SCREEN_WIDTH = Utils.getScreenWidth(context);
+        text = new TextView(context);
         setSwipeLayout();
 
     }
@@ -72,7 +74,7 @@ public class SwipeLayout extends RelativeLayout {
 
     public void setSwipeLayout() {
 
-        textView = new TextView(context);
+
 
         new Handler().post(()->{
 
@@ -90,20 +92,25 @@ public class SwipeLayout extends RelativeLayout {
             LayoutParams rlp = new LayoutParams(measuredWidth
                     , measuredHeight);
 
-            textView.setText("Undo");
-            textView.setBackgroundColor(Color.RED);
-            textView.setTextColor(Color.BLACK);
-            textView.setGravity(Gravity.CENTER);
-            textView.setLayoutParams(rlp);
-            textView.setVisibility(INVISIBLE);
+            text.setText("Undo");
+            text.setBackgroundColor(Color.RED);
+            text.setTextColor(Color.BLACK);
+            text.setGravity(Gravity.CENTER);
+            text.setLayoutParams(rlp);
+            text.setVisibility(INVISIBLE);
 
-            this.addView(textView);
+            this.addView(text);
 
 
 
         });
 
 
+    }
+
+    public TextView getUndo() {
+
+        return this.text;
     }
 
 
